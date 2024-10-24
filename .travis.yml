@@ -31,3 +31,16 @@ jobs:
         - pip install tox
       script:
         - tox -e shellcheck
+    - name: Tsinghap
+      service:
+        - docker
+      install:
+      script:
+        - docker build . -t pianho-e-srilm
+        - >
+          docker run --rm pianho-e-srilm
+          -v `pwd`:/tsuliau/
+          /opt/bin/i686-m64/ngram-count \
+          -order 3 -prune 1e-7 -unk -lm \
+          -text /tsuliau/LICENSE /tsuliau/bun3.arpa
+        - diff bun3.arpa test/LICENSE.arpa
