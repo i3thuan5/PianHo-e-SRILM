@@ -1,5 +1,4 @@
-FROM ubuntu:18.04
-MAINTAINER sih4sing5hong5
+FROM ubuntu:24.04
 
 
 RUN apt-get update -qq && \
